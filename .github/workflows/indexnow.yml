@@ -1,0 +1,19 @@
+name: IndexNow Sitemap Ping
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Ping sitemap.xml to IndexNow
+        run: |
+          curl -H "Content-Type: application/json" -d '{
+            "host": "heikkilund.fi",
+            "key": "fc8dad8feb2440cc95850ecf0c003a92",
+            "keyLocation": "https://heikkilund.fi/fc8dad8feb2440cc95850ecf0c003a92.txt",
+            "urlList": ["https://heikkilund.fi/sitemap.xml"]
+          }' https://api.indexnow.org/indexnow -i
